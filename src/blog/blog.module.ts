@@ -1,11 +1,13 @@
 import { Module } from "@nestjs/common";
-import { BlogController } from "./blog.controller";
-import { BlogService } from "./blog.service";
-import { BlogRepository } from "./blog.repository";
+import { BlogController } from "./api/blog.controller";
+import { BlogService } from "./application/blog.service";
+import { SequelizeRepository } from "./infrastructure/sequelize.repository";
+import { Blog } from "./domain/blog.entity";
+import { SequelizeModule } from "@nestjs/sequelize";
 
 
 @Module({
-    imports: [],
+    imports: [SequelizeModule.forFeature([Blog])],
     controllers: [BlogController],
     providers: [
         {
@@ -13,10 +15,10 @@ import { BlogRepository } from "./blog.repository";
             useClass: BlogService
         },
         {
-            provide: "Blog_Repository",
-            useClass: BlogRepository
+            provide: "Sequelize_Repository",
+            useClass: SequelizeRepository
         }
     ],
-    exports: []
+    exports: [SequelizeModule]
 })
-export class BlogModule{}
+export class BlogModule { }
