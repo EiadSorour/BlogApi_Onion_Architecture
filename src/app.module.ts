@@ -13,7 +13,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
       database: 'blogs_onion_architecture',
       autoLoadModels: true,
       synchronize: true
-    }) ,BlogModule],
+    }), BlogModule],
   controllers: [],
   providers: [],
 })

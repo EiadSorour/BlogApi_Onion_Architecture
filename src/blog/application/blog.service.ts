@@ -1,6 +1,6 @@
 import { Inject, Injectable } from "@nestjs/common";
 import { IBlogService } from "../domain/blog.service.interface";
-import { Blog } from "../domain/blog.entity";
+import { IBlog } from "../domain/blog.entity.interface";
 import { IBlogRepository } from "../domain/blog.repository.interface";
 
 
@@ -8,11 +8,11 @@ import { IBlogRepository } from "../domain/blog.repository.interface";
 export class BlogService implements IBlogService{
     constructor(@Inject("Sequelize_Repository") private readonly blogRepository: IBlogRepository){}
     
-    async getBlog(id: number): Promise<Blog> {
-        return await this.blogRepository.get(id);
+    async getBlog(id: number): Promise<IBlog> {
+        return await this.blogRepository.get(id); 
     }
 
-    async getAllBlogs(): Promise<Blog[]> {
+    async getAllBlogs(): Promise<IBlog[]> {
         return await this.blogRepository.getAll();
     }
 
@@ -20,11 +20,11 @@ export class BlogService implements IBlogService{
         await this.blogRepository.delete(id);
     }
 
-    async updateBlog(blog: Blog): Promise<Blog> {
+    async updateBlog(blog: IBlog): Promise<IBlog> {
         return await this.blogRepository.update(blog);
     }
     
-    async createBlog(blog: Blog): Promise<void> {
+    async createBlog(blog: IBlog): Promise<void> {
         return await this.blogRepository.create(blog);
     }
 

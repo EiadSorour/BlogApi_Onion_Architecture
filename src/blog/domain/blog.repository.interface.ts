@@ -1,9 +1,9 @@
-import { Blog } from "./blog.entity";
+import { IBlog } from "./blog.entity.interface";
 
 export interface IBlogRepository{
-    get(id:number): Promise<Blog>;
-    getAll(): Promise<Blog[]>;
+    get(id:number): Promise<IBlog>;
+    getAll(): Promise<IBlog[]>;
     delete(id:number): Promise<void>;
-    update(blog: Blog): Promise<Blog>;
-    create(blog: Blog): Promise<void>;
+    update(blog: IBlog): Promise<IBlog>;
+    create(blog: IBlog): Promise<void>;
 }

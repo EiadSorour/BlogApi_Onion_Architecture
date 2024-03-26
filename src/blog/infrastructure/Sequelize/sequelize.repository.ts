@@ -1,7 +1,7 @@
 import { Injectable } from "@nestjs/common";
-import { IBlogRepository } from "../domain/blog.repository.interface";
-import { Blog } from "../domain/blog.entity";
+import { IBlogRepository } from "../../domain/blog.repository.interface";
 import { InjectModel } from "@nestjs/sequelize";
+import { Blog } from "./sequelize.entity";
 
 
 @Injectable()
@@ -14,7 +14,7 @@ export class SequelizeRepository implements IBlogRepository{
     }
     
     async getAll(): Promise<Blog[]> {
-        return await this.blogModel.findAll();
+        return await this.blogModel.findAll(); 
     }
 
     async delete(id: number): Promise<void> {
