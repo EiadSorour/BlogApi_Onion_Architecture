@@ -6,7 +6,7 @@ import { IBlogRepository } from "../domain/blog.repository.interface";
 
 @Injectable()
 export class BlogService implements IBlogService{
-    constructor(@Inject("Sequelize_Repository") private readonly blogRepository: IBlogRepository){}
+    constructor(@Inject("Mongoose_Repository") private readonly blogRepository: IBlogRepository){}
     
     async getBlog(id: number): Promise<IBlog> {
         return await this.blogRepository.get(id); 
